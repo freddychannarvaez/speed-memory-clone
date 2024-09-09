@@ -1,33 +1,47 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { NumberSelector } from "./components/NumberSelector"
+import { TimeSelector } from "./components/TimeSelector"
+import { TypeSelector } from "./components/TypeSelector"
+import { useState } from "react"
 import './App.css'
+import { calculateNumbers } from "./services/calculateNumbers"
+import { NumberInput } from "./components/NumberInput"
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [time, setTime] = useState(0.1)
+  const [number, setNumber] = useState(6)
+  const [type, setType] = useState(0)
+  const [numbers, setNumbers] = useState([])
+  const [hasStarted, setHasStarted] = useState(false)
 
+  const onStartTest = () => {
+    setHasStarted(true)
+    console.log('start test')
+    console.log(time)
+    console.log(number)
+    console.log(type)
+    const numbers = calculateNumbers(number, type)
+    setNumbers(numbers)
+    console.log(numbers)
+  }
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="controls">
+        <TimeSelector timeSelected={(time) => setTime(time)} />
+        <NumberSelector numberSelected={(number) => setNumber(number)} />
+        <TypeSelector typeSelected={(type) => setType(type)} />
+        <button onClick={() => onStartTest()} >Start Test</button>
+
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div className="numbers">
+        {numbers.map((number, index) => (
+          <span key={index}>{number}</span>
+        ))}
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {
+        hasStarted && (
+          <NumberInput number={number} />
+        )
+      }
     </>
   )
 }
