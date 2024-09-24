@@ -1,7 +1,7 @@
 export function calculateNumbers(number, type) {
   if (type === 0) {
     return createDecimalNumbersArray(number)
-  } else if (type === 1) {
+  } else if (+type === 1) {
     return createBinaryNumbersArray(number)
   }
 }

@@ -8,14 +8,16 @@
  * [x] Should create number selector component
  * [x] Should create type selector component
  * [x] Should create start test button
- * [ ] Should create evaluate button
- * [ ] Should create see numbers button
+ * [x] Should create evaluate button
+ * [x] Should create see numbers button
+ * [ ] Should create restart button
 
  ### Create game logic
- * [ ] Should show numbers after start of test
- * [ ] Should show inputs after time is over
+ * [x] Should show numbers after start of test
+ * [x] Should show inputs after time is over
+ * [x] Should show numbers when user clicks on see numbers button
+ * [x] Should have binary mode and decimal mode
  * [ ] Should evaluate inputs and show corrects and wrongs
- * [ ] Should show numbers when user clicks on see numbers button
 
  ## Installing
   To clone the repo:
