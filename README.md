@@ -17,7 +17,8 @@
  * [x] Should show inputs after time is over
  * [x] Should show numbers when user clicks on see numbers button
  * [x] Should have binary mode and decimal mode
- * [ ] Should evaluate inputs and show corrects and wrongs
+ * [x] Should evaluate inputs and show corrects and wrongs
+ * [ ] Should show message saying results
 
  ## Installing
   To clone the repo:
