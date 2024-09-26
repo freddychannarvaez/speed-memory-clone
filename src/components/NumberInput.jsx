@@ -1,4 +1,4 @@
-export function NumberInput({number, onSubmit}) {
+export function NumberInput({number, onSubmit, grade}) {
   const numberArray = Array(+number).fill()
   
   setTimeout(() => {
@@ -41,7 +41,11 @@ export function NumberInput({number, onSubmit}) {
           onChange={(event) => onInput(event, index)}
         />
       ))}
-      <button type="submit">Submit</button>
+      {
+        !grade && (
+          <button type="submit">Submit</button>
+        )
+      }
     </form>
   )
 }

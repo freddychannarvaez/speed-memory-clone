@@ -22,15 +22,15 @@ const times = [
   { name: 2, value: 2000 },
 ]
 
-export function TimeSelector({timeSelected}) {
+export function TimeSelector({initialValue, timeSelected}) {
   return (
-    <div>
+    <div className="selector">
       <label>Select a time</label>
-      <select onChange={(e) => timeSelected(e.target.value)}> 
+      <select value={initialValue} onChange={(e) => timeSelected(e.target.value)}> 
         {times.map((time, index) => (
           <option key={index} value={time.value}>{time.name}</option>
         ))}
-      </select>
+      </select>seg
     </div>
   )
 }

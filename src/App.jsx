@@ -6,14 +6,18 @@ import './App.css'
 import { calculateNumbers } from "./services/calculateNumbers"
 import { NumberInput } from "./components/NumberInput"
 
+const initialTime = 1000 // in milliseconds
+
 function App() {
-  const [time, setTime] = useState(100)
+  const [time, setTime] = useState(initialTime)
   const [number, setNumber] = useState(6)
   const [type, setType] = useState(0)
   const [numbers, setNumbers] = useState([])
   const [isRunning, setIsRunning] = useState(false)
   const [hasEnded, setHasEnded] = useState(false)
   const [showAnswer, setShowAnswer] = useState(false)
+  const [answer, setAnswer] = useState([])
+  const [grade, setGrade] = useState(false)
 
   const onStartTest = () => {
     setIsRunning(true)
@@ -28,6 +32,8 @@ function App() {
 
   // FIXME: Show right and wrong answers
   const onCheckTest = (answer) => {
+    setAnswer(answer)
+    setGrade(true)
     if (onValidateTest(answer, numbers)) {
       console.log('Right answer')
     } else {
@@ -40,9 +46,9 @@ function App() {
   }
 
   // TODO:
-  // const onRestartTest = () => {
-  //   console.log('restart test')
-  // }
+  const onResetTest = () => {
+    console.log('restart test')
+  }
 
   const onValidateTest = (answer, solution) => {
     return answer.map((number, index) => {
@@ -57,7 +63,7 @@ function App() {
   return (
     <>
       <div className="controls">
-        <TimeSelector timeSelected={(time) => setTime(time)} />
+        <TimeSelector initialValue={initialTime} timeSelected={(time) => setTime(time)} />
         <NumberSelector numberSelected={(number) => setNumber(number)} />
         <TypeSelector typeSelected={(type) => setType(type)} />
         {
@@ -68,7 +74,6 @@ function App() {
         {
           hasEnded && (
             <div>
-              
               <button type="button" className="answer-button" onClick={() => onSeeAnswer()}>See answer</button>
               {/* TODO: Create restart button and functionality */}
               {/* <button type="button" className="restart-button" onClick={() => onRestartTest()}>Restart</button> */}
@@ -87,10 +92,30 @@ function App() {
         )
       }
       {
-        hasEnded && (
-          <NumberInput number={number} onSubmit={(answer) => onCheckTest(answer)} />
+        isRunning && (
+          <button type="button" className="reset-button" onClick={() => onResetTest()}>Reset</button>
         )
       }
+      <div>
+        {
+          hasEnded && (
+            <NumberInput number={number} onSubmit={(answer) => onCheckTest(answer)} grade={grade} />
+          )
+        }
+        {
+          hasEnded && grade && answer.length > 0 && (
+            <div className="inputs">
+              {
+                numbers.map((number, index) => (
+                  <span key={index}
+                    className={number == answer[index] ? 'right' : 'wrong'}
+                    >{number}</span>
+                ))
+              }
+            </div>
+          )
+        }
+      </div>
       {
         showAnswer && (
         <dialog className="answer-dialog">

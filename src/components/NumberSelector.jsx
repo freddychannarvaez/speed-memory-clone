@@ -20,7 +20,7 @@ export function NumberSelector({numberSelected}) {
 
 
   return (
-    <div>
+    <div className="selector">
       <label>Select a number</label>
       <select onChange={(e) => numberSelected(e.target.value)}>
         {numbers.map((number, index) => (
