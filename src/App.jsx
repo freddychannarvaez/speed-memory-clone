@@ -62,6 +62,7 @@ function App() {
 
   return (
     <>
+    <h1>Speed Memory</h1>
       <div className="controls">
         <TimeSelector initialValue={initialTime} timeSelected={(time) => setTime(time)} />
         <NumberSelector numberSelected={(number) => setNumber(number)} />
