@@ -10,7 +10,9 @@
  * [x] Should create start test button
  * [x] Should create evaluate button
  * [x] Should create see numbers button
- * [ ] Should create restart button
+ * [x] Should create restart button
+ * [x] Should allow player to change between inputs using arrow keys
+ * [x] Should block controls after test is started
 
  ### Create game logic
  * [x] Should show numbers after start of test
@@ -19,6 +21,7 @@
  * [x] Should have binary mode and decimal mode
  * [x] Should evaluate inputs and show corrects and wrongs
  * [ ] Should show message saying results
+ * [ ] Should show congratulations message on successful test
 
  ## Installing
   To clone the repo:
@@ -36,4 +39,4 @@
  ```
 
  ## Authors
- [Freddy Chan Narvaez](freddychannarvaez.com)
+ [Freddy Chan Narvaez](https://freddychannarvaez.com)

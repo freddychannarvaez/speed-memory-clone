@@ -1,4 +1,4 @@
-export function NumberInput({number, onSubmit, grade}) {
+export function NumberInput({number, onSubmit, evaluate}) {
   const numberArray = Array(+number).fill()
   
   setTimeout(() => {
@@ -19,7 +19,7 @@ export function NumberInput({number, onSubmit, grade}) {
   }
 
   const onInput = (event, index) => {
-    if (event.target.value.length > 1) return
+    if (event.target.value.length > 1 || event.target.value == '') return
     if (isNumber(event.target.value)) {
       const inputElements = document.getElementsByTagName('input')
       if (index + 1 < inputElements.length) {
@@ -27,9 +27,31 @@ export function NumberInput({number, onSubmit, grade}) {
       }
     }
   }
+  const onDetectBackspace = (event, index) => {
+    const inputElements = document.getElementsByTagName('input')
+    if (event.keyCode == 8) {
+      if (index - 1 >= 0) {
+        setTimeout(() => {
+          inputElements[index - 1].focus()
+        }, 50)
+      }
+    } else if (event.keyCode == 37) {
+      if (index - 1 >= 0) {
+        setTimeout(() => {
+          inputElements[index - 1].focus()
+        }, 50)
+      }
+    } else if (event.keyCode == 39) {
+      if (index + 1 < inputElements.length) {
+        setTimeout(() => {
+          inputElements[index + 1].focus()
+        }, 50)
+      }
+    }
+  }
 
   return (
-    <form onSubmit={(event) => handleSubmit(event)}
+    <form id="answer" onSubmit={(event) => handleSubmit(event)}
       className="inputs">
       {numberArray.map((_, index) => (
         <input
@@ -38,11 +60,14 @@ export function NumberInput({number, onSubmit, grade}) {
           name={index}
           max={9}
           min={0}
+          required
+          disabled={evaluate}
           onChange={(event) => onInput(event, index)}
+          onKeyDown={(event) => onDetectBackspace(event, index)}
         />
       ))}
       {
-        !grade && (
+        !evaluate && (
           <button type="submit">Submit</button>
         )
       }

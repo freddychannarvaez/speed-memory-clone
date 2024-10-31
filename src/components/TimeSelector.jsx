@@ -22,11 +22,11 @@ const times = [
   { name: 2, value: 2000 },
 ]
 
-export function TimeSelector({initialValue, timeSelected}) {
+export function TimeSelector({initialValue, timeSelected, hasStarted}) {
   return (
     <div className="selector">
       <label>Select a time</label>
-      <select value={initialValue} onChange={(e) => timeSelected(e.target.value)}> 
+      <select value={initialValue} onChange={(e) => timeSelected(e.target.value)} disabled={hasStarted}> 
         {times.map((time, index) => (
           <option key={index} value={time.value}>{time.name}</option>
         ))}
