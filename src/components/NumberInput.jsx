@@ -10,9 +10,9 @@ export function NumberInput({number, onSubmit, evaluate}) {
     const result = []
     event.preventDefault()
     const formData = new FormData(event.target);
-    if (formData.values().some((x) => x == '')) return
 
     for (const inputName of formData.values()) { 
+      if (inputName == '') return
       result.push(inputName)
     }
     onSubmit(result)
