@@ -52,20 +52,22 @@ export function NumberInput({number, onSubmit, evaluate}) {
 
   return (
     <form id="answer" onSubmit={(event) => handleSubmit(event)}
-      className="inputs">
-      {numberArray.map((_, index) => (
-        <input
-          key={index}
-          type="number"
-          name={index}
-          max={9}
-          min={0}
-          required
-          disabled={evaluate}
-          onChange={(event) => onInput(event, index)}
-          onKeyDown={(event) => onDetectBackspace(event, index)}
-        />
-      ))}
+      className="inputs-container">
+        <div className="inputs">
+          {numberArray.map((_, index) => (
+            <input
+              key={index}
+              type="number"
+              name={index}
+              max={9}
+              min={0}
+              required
+              disabled={evaluate}
+              onChange={(event) => onInput(event, index)}
+              onKeyDown={(event) => onDetectBackspace(event, index)}
+            />
+          ))}
+        </div>
       {
         !evaluate && (
           <button type="submit">Submit</button>
